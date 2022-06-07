@@ -34,6 +34,14 @@
 \definecolor{NordGreen}{HTML}{A3BE8C}         % nord14
 \definecolor{NordMagenta}{HTML}{B48EAD}       % nord15
 
+% ALICE/UU/Nikhef colors
+\definecolor{AliceRed}{HTML}{E20719}
+\definecolor{AliceWhite}{HTML}{FFFFFF}
+\definecolor{AliceBlack}{HTML}{242424}
+\definecolor{AliceBlue}{HTML}{001768}
+
+% \definecolor{UUYellow}{HTML}{FFCD00}
+% \definecolor{NikhefRed}{HTML}{E6223D}
 
 %%%%% create alias for colors according to usage
 \DeclareOptionBeamer{style}{\def\beamer@nordtheme@style{#1}}
@@ -49,11 +57,11 @@
 \colorlet{ColorSubsectionInToc}{ColorSubtitle}
 
 \ifx\beamer@nordtheme@style\beamer@nordtheme@styledark%
-  \colorlet{ColorBackground}{NordBlack}
-  \colorlet{ColorText}{NordWhite}
+  \colorlet{ColorBackground}{AliceBlack}
+  \colorlet{ColorText}{AliceWhite}
   \colorlet{ColorExampleText}{NordBrightCyan}
   \colorlet{ColorStructure}{NordCyan}
-  \colorlet{ColorTitle}{NordGreen}
+  \colorlet{ColorTitle}{AliceRed}
   \colorlet{ColorSubsectionInTocShaded}{NordCyan!20!NordBrightBlack}
   \colorlet{ColorItemizeItem}{NordGreen}
   \colorlet{ColorBlockTitleBg}{NordBlack!80}

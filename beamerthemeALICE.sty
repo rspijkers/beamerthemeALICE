@@ -8,7 +8,7 @@
 % 
 % Modified by: Rik Spijkers <rik.spijkers@gmail.com>
 
-\ProvidesPackage{beamerthemeALICE}[2022/05/25 A beamer theme using Nord color scheme]
+\ProvidesPackage{beamerthemeALICE}[2022/05/25 An unofficial beamer theme for ALICE]
 
 \mode<presentation>
 
@@ -26,22 +26,20 @@
 
 \setbeamersize{text margin left=10mm,text margin right=10mm}
 
-
 \setbeamertemplate{caption}{\insertcaption}
 
-\setbeamertemplate{itemize item}{$\ast$}
-\setbeamertemplate{itemize subitem}{$\ast$}
-\setbeamertemplate{itemize subsubitem}{$\ast$}
+% \setbeamertemplate{itemize item}{$\ast$}
+% \setbeamertemplate{itemize subitem}{$\ast$}
+% \setbeamertemplate{itemize subsubitem}{$\ast$}
 \setbeamertemplate{frametitle}{
   {\usebeamercolor[fg]{normal text} \mdseries >> }~\boldmath\insertframetitle%
   \hfill\ifx\insertframesubtitle\@empty\else{\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\fi
 }
 \setbeamertemplate{frametitle continuation}[from second][\insertcontinuationtext]
-\setbeamertemplate{headline}
-{%
-\begin{beamercolorbox}{section in head/foot}
-\vskip2pt\insertnavigation{\paperwidth}\vskip5pt
-\end{beamercolorbox}%
+\setbeamertemplate{headline}{
+  \begin{beamercolorbox}{section in head/foot}
+  \vskip2pt\insertnavigation{\paperwidth}\vskip5pt
+  \end{beamercolorbox}%
 }
 \setbeamertemplate{footline}{
   \newbox\nord@tmpbox
@@ -80,7 +78,6 @@
 \addtobeamertemplate{block example begin}{%
   \setlength{\textwidth}{0.85\textwidth}%
 }{}
-
 
 \mode
 <all>
