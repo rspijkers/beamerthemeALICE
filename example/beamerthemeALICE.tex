@@ -6,7 +6,7 @@
 % The latest version of this license is in
 %   http://www.latex-project.org/lppl.txt
 
-\documentclass[compress,aspectratio=169]{beamer}
+\documentclass[compress]{beamer}
 % compress = slide titles on one line
 % aspectratio is set to 16:9, default is "square" slides
 
@@ -16,11 +16,9 @@
 \usepackage{fontspec}
 \usepackage{tikz}
 
-\usetheme{ALICE}
+\usepackage{subcaption}
 
-% \setmainfont{Yanone Kaffeesatz}
-% \setsansfont{Source Sans Pro}
-% \setmonofont{DejaVu Sans Mono}
+\usetheme{ALICE}
 
 %%% SHOW TOC AT START OF (SUB)SECTION %%%
 % \AtBeginSection[]
@@ -30,17 +28,10 @@
 %   \end{frame}
 % }
 
-% \AtBeginSubsection[]
-% {
-%   \begin{frame}[c,noframenumbering,plain]
-%     \tableofcontents[sectionstyle=show/hide,subsectionstyle=show/shaded/hide]
-%   \end{frame}
-% }
-
-\title{Title}
-\subtitle{subtitle}
+\title{Presentation Title}
+\subtitle{This is a subtitle (optional). You can even make it two lines long! Not three though...}
 \author{Rik Spijkers}
-\institute{Institute}
+\institute{Institute, optional}
 \date{\today}
 
 \begin{document}
@@ -61,85 +52,38 @@
 \section{Section 2}
 \subsection{Subsection 1}
 \subsection{Subsection 2}
-\begin{frame}{A slide}
-  
-\end{frame}
-\section*{} % empty section to ensure that the backup is not counted as part of the last section
-
-%% BACKUP %%% 
 
 \begin{frame}[fragile]
-    % fragile option into the \begin{frame} command: whatever text we enter in the environment will appear as written, except for the backslash, open curly bracket and close curly bracket characters, which will continue to behave as they normally would in LaTeX; therefore, if we want to print some code which includes these characters we need to add an extra backslash before each of them.
-  \frametitle{Backup: Usage}
+  \frametitle{How to use this package}
   Simply include the following code in your preamble:
 
   \begin{lstlisting}[basicstyle = \ttfamily\small]
-    \usetheme{Nord}
+    \usetheme{ALICE}
   \end{lstlisting}
 
-  \bigskip
-
-  By default, the appearance is in dark theme, however you can actively choose a either a light or a
-  dark theme.
-
-  \begin{lstlisting}[basicstyle = \ttfamily\small]
-    \usetheme[style=light]{Nord}
-    \usetheme[style=dark]{Nord}
-  \end{lstlisting}
+  See also the github page for more documentation: \\
+  https://github.com/rspijkers/beamerthemeALICE
 
 \end{frame}
 
-\begin{frame}{Backup: Defined Colors}{This is a subtitle}
-  \begin{description}[Snow Storm]
-  \item[Polar Night]
-    \textcolor{NordDarkBlack}{NordDarkBlack} \quad \textcolor{NordBlack}{NordBlack}\\
-    \textcolor{NordMediumBlack}{NordMediumBlack} \quad \textcolor{NordBrightBlack}{NordBrightBlack}
-  \item[Snow Storm]
-    \textcolor{NordWhite}{NordWhite} \quad \textcolor{NordBrighterWhite}{NordBrightestWhite}\\
-    \textcolor{NordBrightestWhite}{NordBrightestWhite}
-  \item[Forest]
-    \textcolor{NordCyan}{NordCyan} \quad \textcolor{NordBrightCyan}{NordBrightCyan}\\
-    \textcolor{NordBlue}{NordBlue} \quad \textcolor{NordBrightBlue}{NordBrightBlue}
-  \item[Aurora]
-    \textcolor{NordRed}{NordRed} \quad \textcolor{NordOrange}{NordOrange} \\
-    \textcolor{NordYellow}{NordYellow} \quad \textcolor{NordGreen}{NordGreen} \\
-    \textcolor{NordMagenta}{NordMagenta}
+\begin{frame}{The color scheme}
+  \begin{description}
+    \item \textcolor{AliceDarkBlue}{AliceDarkBlue} \quad \textcolor{AliceBlue}{AliceBlue} \quad \textcolor{AliceLightBlue}{AliceLightBlue} \quad \textcolor{AliceLighterBlue}{AliceLighterBlue}\\
+    \item \textcolor{AliceRed}{AliceRed}\\
+    \item \textcolor{AliceWhite}{AliceWhite}\\
+    \item \textcolor{AliceGray}{AliceGray}\\
+    \item 
+    \item The background of this slide is in AliceBlack
   \end{description}
-\end{frame}
-
-\begin{frame}[fragile]{Backup: Recommended Free Fonts}
-  \begin{description}[Selected Fonts]
-  \item[Selected Fonts] recommended for this theme\\
-    \begin{lstlisting}[basicstyle = \ttfamily\small]
-        \setmainfont{Yanone Kaffeesatz}
-        \setsansfont{Andika New Basic}
-        \setmonofont{DejaVu Sans Mono}
-    \end{lstlisting}
-  \item[Download] {\small \url{https://www.fontsquirrel.com/}}
-  \item[Install Fonts] {\small \url{https://www.google.com/get/noto/help/install/}}
-  \item[Compilation] compile with \XeLaTeX~to use system-wide fonts
-  \end{description}
-
 \end{frame}
 
 \begin{frame}
-  \frametitle{Backup: Blocks}
+  \frametitle{Blocks}
   \begin{block}{This is a Block}
     \[
       a^2 + b^2 = c^2
     \]
   \end{block}
-  \begin{exampleblock}{This is an Example Block}
-    \[
-      E = m \cdot c^{2}
-    \]
-  \end{exampleblock}
-  \begin{alertblock}{This is an Alert Block}
-    \[
-      e^{i\pi} + 1 = 0
-    \]
-  \end{alertblock}
-
   \centering
   \begin{minipage}{1.0\linewidth}
     \begin{block}{Horizontally-Aligned Block}
@@ -150,7 +94,7 @@
   \end{minipage}
 \end{frame}
 
-\begin{frame}{Backup: Items}
+\begin{frame}{Items}
   Itemize
   \begin{itemize}
     \item item 1
@@ -162,24 +106,26 @@
   Enumerate
   \begin{enumerate}
     \item item 1
-    \item item 2
+    \item item 2    
   \end{enumerate}
 \end{frame}
 
-\begin{frame}{Backup: Figures}
+\begin{frame}{Figures}
   \begin{figure}
     \centering
     \begin{tikzpicture}
-      \draw [help lines,NordMagenta,very thick] (0,0) grid (5,4);
+      \draw [help lines,AliceRed,very thick] (0,0) grid (5,4);
     \end{tikzpicture}
     \caption{Credits to Ti\textit{k}Z}
   \end{figure}
 \end{frame}
 
+%% BACKUP %%% 
+\section*{} % empty section to ensure that the backup is not counted as part of the last section
+
+\begin{frame}{Backup slides: Also, this title is very long to show that line breaks in frame titles are handled correctly}
+  This is a backup slide, it should not be in the TOC
+\end{frame}
+
 \end{document}
 
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% TeX-engine: xetex
-%%% End:

@@ -8,55 +8,74 @@
 % 
 % Modified by: Rik Spijkers <rik.spijkers@gmail.com>
 
-\ProvidesPackage{beamerthemeALICE}[2022/05/25 An unofficial beamer theme for ALICE]
+\ProvidesPackage{beamerthemeALICE}[2022/06/17 An unofficial beamer theme for ALICE]
 
 \mode<presentation>
 
-\DeclareOptionBeamer{style}{
-  \PassOptionsToPackage{style=#1}{beamercolorthemeALICE}
-}
-\ProcessOptionsBeamer
-
 \RequirePackage{ifthen}
+\RequirePackage{tikz}
+\usetikzlibrary{calc} % needed for coordinate calculation
 
 \usecolortheme{ALICE}
 \usefonttheme{ALICE}
 
-\setbeamertemplate{navigation symbols}{}
-
 \setbeamersize{text margin left=10mm,text margin right=10mm}
+
+%%% Set and/or change various beamer templates
+\setbeamertemplate{navigation symbols}{} % Turn off navigation symbols
 
 \setbeamertemplate{caption}{\insertcaption}
 
-% \setbeamertemplate{itemize item}{$\ast$}
-% \setbeamertemplate{itemize subitem}{$\ast$}
-% \setbeamertemplate{itemize subsubitem}{$\ast$}
 \setbeamertemplate{frametitle}{
-  {\usebeamercolor[fg]{normal text} \mdseries >> }~\boldmath\insertframetitle%
-  \hfill\ifx\insertframesubtitle\@empty\else{\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\fi
-}
-\setbeamertemplate{frametitle continuation}[from second][\insertcontinuationtext]
-\setbeamertemplate{headline}{
-  \begin{beamercolorbox}{section in head/foot}
-  \vskip2pt\insertnavigation{\paperwidth}\vskip5pt
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[AliceRed] (current page.north west) rectangle (16,-1);
+  \end{tikzpicture}
+
+  \begin{beamercolorbox}[wd=\textwidth,ht=0.65cm,dp=0.7cm]{frametitle}
+    \boldmath\insertframetitle%
   \end{beamercolorbox}%
 }
+
+\setbeamertemplate{frametitle continuation}[from second][\insertcontinuationtext]
+
 \setbeamertemplate{footline}{
-  \newbox\nord@tmpbox
-  \setbox\nord@tmpbox\hbox{[\insertframenumber/\inserttotalframenumber]}
+  \newbox\Alice@tmpbox
+  \setbox\Alice@tmpbox\hbox{[\insertframenumber/\inserttotalframenumber]}
   \vspace{5.2mm}
-  \hspace{2mm}\noindent\hfill\box\nord@tmpbox\hspace{2mm}
+  \hspace{2mm}\noindent\hfill\box\Alice@tmpbox\hspace{2mm}
   \vspace{1.3mm}
 }
-\setbeamertemplate{title page}{
-  \renewcommand\thefootnote{\fnsymbol{footnote}}
-  \setcounter{footnote}{1} % \dagger
-  {\usebeamerfont{title}\usebeamercolor[fg]{title}\bfseries\boldmath\inserttitle}
-  \ifx\insertsubtitle\@empty\else\\[1em] {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}\fi~\\[2em]
-  {\structure{by}} \insertauthor\ \ifx\insertinstitute\@empty\else\quad(\insertinstitute)\fi
-  \\[1pt]
-  {\structure{on}} \insertdate\\
-  \renewcommand\thefootnote{\arabic{footnote}}
+
+\setbeamertemplate{title page}{%
+
+  \begin{tikzpicture}[remember picture,overlay]
+    \newcommand{\banner}{0.5} % the y-value of the red banner, in cm
+    % Note that y=0 is at roughly 2/3 of the page heigth
+
+    % The red banner
+    \fill[AliceRed] (current page.north west) rectangle (16,\banner);
+    % Title
+    \node[inner sep=0pt, anchor = south west, text width=\linewidth] (Title) at (0,\banner+0.5)
+    {{\usebeamerfont{title}\usebeamercolor[fg]{title}\bfseries\boldmath\inserttitle}};
+    % Subtitle
+    \ifx\insertsubtitle\@empty\else
+    {
+      \node[inner sep=0pt, anchor = north west, text width=\linewidth] (Subtitle) at (0,\banner-0.3) {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle};}
+    \fi
+    % Author, institute, date
+    \node[inner sep=0pt, anchor = north west, text width=\linewidth] (Author) at (0,\banner-1.7) {{\structure{by}} \insertauthor\ \ifx\insertinstitute\@empty\else\quad(\insertinstitute)\fi\\
+    {\structure{on}} \insertdate};
+    
+    % Logo's
+    % Maybe make the logo's a bit smaller? or let the size be independent on the aspectratio (use heigth instead of width?)
+    \node[inner sep=0pt] (NikhefLogo) at ($(current page.south) + (-.35\textwidth, 2)$)
+    {\includegraphics[width=.25\textwidth]{logos/NikhefLogo.png}};
+    \node[inner sep=0pt] (UULogo) at ($(current page.south) + (.08\textwidth, 2)$)
+    {\includegraphics[width=.6\textwidth]{logos/UULogo}};
+    \node[inner sep=0pt] (AliceLogo) at ($(current page.south) + (.35\textwidth, 2)$)
+    {\includegraphics[width=.1\textwidth]{logos/AliceLogo.png}};
+  \end{tikzpicture}
+
   \setcounter{footnote}{0}
 }
 
@@ -64,7 +83,7 @@
 \setbeamertemplate{section in toc}{
   \inserttocsection\\\smallskip
 }
-\setbeamertemplate{subsection in toc}{~$\ast$~~\inserttocsubsection\\\smallskip}
+\setbeamertemplate{subsection in toc}{~$\circ$~~\inserttocsubsection\\\smallskip}
 \setbeamertemplate{subsection in toc shaded}[default][100]
 
 % block
@@ -72,12 +91,11 @@
 \addtobeamertemplate{block begin}{%
   \setlength{\textwidth}{0.85\textwidth}%
 }{}
-\addtobeamertemplate{block alerted begin}{%
-  \setlength{\textwidth}{0.85\textwidth}%
-}{}
-\addtobeamertemplate{block example begin}{%
-  \setlength{\textwidth}{0.85\textwidth}%
-}{}
+
+% TODO list:
+% - add a date/author/title footnote on every slide
+% - make slide templates for common usecases, such as 2 plots next to eachother on one slide
+% - option for a logo on every slide? (where?)
 
 \mode
 <all>
