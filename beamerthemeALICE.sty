@@ -28,11 +28,11 @@
 
 \setbeamertemplate{frametitle}{
   \begin{tikzpicture}[remember picture,overlay]
-    \fill[AliceRed] (current page.north west) rectangle (16,-1);
+    \fill[AliceDarkRed] (current page.north west) rectangle (16,-1);
   \end{tikzpicture}
 
-  \begin{beamercolorbox}[wd=\textwidth,ht=0.65cm,dp=0.7cm]{frametitle}
-    \boldmath\insertframetitle%
+  \begin{beamercolorbox}[wd=\textwidth,ht=0.65cm,dp=0.55cm]{frametitle}
+    {\raggedright\boldmath\insertframetitle}%
   \end{beamercolorbox}%
 }
 
@@ -53,7 +53,7 @@
     % Note that y=0 is at roughly 2/3 of the page heigth
 
     % The red banner
-    \fill[AliceRed] (current page.north west) rectangle (16,\banner);
+    \fill[AliceDarkRed] (current page.north west) rectangle (16,\banner);
     % Title
     \node[inner sep=0pt, anchor = south west, text width=\linewidth] (Title) at (0,\banner+0.5)
     {{\usebeamerfont{title}\usebeamercolor[fg]{title}\bfseries\boldmath\inserttitle}};
@@ -81,9 +81,9 @@
 
 % table of contents
 \setbeamertemplate{section in toc}{
-  \inserttocsection\\\smallskip
+  {$\blacktriangleright$~\inserttocsection\\\smallskip}
 }
-\setbeamertemplate{subsection in toc}{~$\circ$~~\inserttocsubsection\\\smallskip}
+\setbeamertemplate{subsection in toc}{~~\textbullet~~\inserttocsubsection\\\smallskip}
 \setbeamertemplate{subsection in toc shaded}[default][100]
 
 % block
@@ -96,6 +96,7 @@
 % - add a date/author/title footnote on every slide
 % - make slide templates for common usecases, such as 2 plots next to eachother on one slide
 % - option for a logo on every slide? (where?)
+% - calculate the "actual" textheight (i.e. the space left between frametitle and footnotes/slidenumbers)
 
 \mode
 <all>
